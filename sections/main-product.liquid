@@ -73,6 +73,21 @@
 
         {%- for block in section.blocks -%}
           {%- case block.type -%}
+          
+          {%- when 'bundle_buy_button' -%}
+            <div class="bundle_buy__button_div">
+              <button
+                type="submit"
+                name="add-bundle-button"
+                class="product-form__submit button button--full-width button--primary"
+                onClick="addBundleToCart()"
+              >
+                  <span>
+                    Add Bundle to Cart
+                  </span>
+              </button>
+            </div>
+
           {%- when '@app' -%}
             {% render block %}
           {%- when 'text' -%}
@@ -513,12 +528,57 @@
   }
 </script>
 
+<script>
+  let bundle_data = {
+    items: [
+      {
+        quantity: 1,
+        id: 39341893943318,
+        properties: {
+          'Bundle': 'Yes'
+        }
+      },
+      {
+        quantity: 1,
+        id: 39341765066774,
+        properties: {
+          'Bundle': 'Yes'
+        }
+      }
+    ]
+  }
+
+  const addBundleToCart = () => {
+    fetch('/cart/add.js', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bundle_data),
+    })
+    .then(response => response.json())
+    .then( json => {
+      console.log('Success:', json);
+      // redirect customer to cart
+      window.location.href="/cart";
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+</script>
+
 {% schema %}
 {
   "name": "t:sections.main-product.name",
   "tag": "section",
   "class": "product-section spaced-section",
   "blocks": [
+    {
+      "type":"bundle_buy_button",
+      "name":"Bundle Buy Button",
+      "limit":1
+    },
     {
       "type": "@app"
     },
