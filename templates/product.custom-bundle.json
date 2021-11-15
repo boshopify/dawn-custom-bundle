@@ -38,6 +38,18 @@
           "settings": {
           }
         },
+        "fc94b8c4-835e-4365-b82a-aa5f3e66657c": {
+          "type": "bundle_component_snapshot",
+          "settings": {
+            "bundle_component_product": "{{ product.metafields.bundle.component_one.value }}"
+          }
+        },
+        "8eea272c-2198-49df-b77e-afb981c9b808": {
+          "type": "bundle_component_snapshot",
+          "settings": {
+            "bundle_component_product": "{{ product.metafields.bundle.component_two.value }}"
+          }
+        },
         "description": {
           "type": "description",
           "settings": {
@@ -62,6 +74,8 @@
         "price",
         "variant_picker",
         "quantity_selector",
+        "fc94b8c4-835e-4365-b82a-aa5f3e66657c",
+        "8eea272c-2198-49df-b77e-afb981c9b808",
         "description",
         "44c991a8-09d5-4b27-a917-d0b8454f471f",
         "share"
