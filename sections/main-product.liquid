@@ -74,6 +74,19 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
           
+          {%comment %} Display a snapshot of each bundle component configured {% endcomment %}
+          {%- when 'bundle_component_snapshot' -%}
+            <div class="bundle_component_snapshot_container_div">
+              {%- assign bundle_component_product = block.settings.bundle_component_product -%}
+              {% if bundle_component_product %}
+                <div class="bundle_component_snapshot_div" {{ block.shopify_attributes}}>
+                  {{ bundle_component_product.featured_image | img_url: "small" | img_tag }}
+                  <p>{{ bundle_component_product.title }}</p>
+                </div>
+              {% endif %}
+            </div>
+
+          {%comment %} A bundle buy button with AJAX API {% endcomment %}
           {%- when 'bundle_buy_button' -%}
             <div class="bundle_buy__button_div">
               <button
@@ -578,6 +591,17 @@
       "type":"bundle_buy_button",
       "name":"Bundle Buy Button",
       "limit":1
+    },
+    {
+      "type":"bundle_component_snapshot",
+      "name":"Bundle Component Snapshot"
+      "settings":[
+        {
+          "type":"product",
+          "id": "bundle_component_product",
+          "label":"Bundle Component"
+        }
+      ]
     },
     {
       "type": "@app"
