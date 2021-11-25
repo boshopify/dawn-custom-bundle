@@ -544,7 +544,7 @@
 </script>
 
 <script>
-  let bundle_data = {
+  /* let bundle_data = {
     items: [
       {
         quantity: 1,
@@ -561,9 +561,24 @@
         }
       }
     ]
-  }
+  } */
 
   const addBundleToCart = () => {
+    let bundle_data = { items: [ ] }
+    let bundleComponentList = document.querySelectorAll('.bundle_component_snapshot_div')
+    bundleComponentList.forEach( e => {
+      bundle_data.items.push({
+        quantity: 1,
+        id: e.dataset.productVariantId,
+        properties: {
+          bundle: "Yes"
+        }
+      })
+    })
+
+    console.log(bundle_data)
+
+    /* 
     fetch('/cart/add.js', {
       method: 'POST', 
       headers: {
@@ -580,6 +595,7 @@
     .catch((error) => {
       console.error('Error:', error);
     });
+    */
   }
 </script>
 
