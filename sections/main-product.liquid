@@ -564,6 +564,7 @@
   } */
 
   const addBundleToCart = () => {
+    
     let bundle_data = { items: [ ] }
     let bundleComponentList = document.querySelectorAll('.bundle_component_snapshot_div')
     bundleComponentList.forEach( e => {
@@ -575,10 +576,7 @@
         }
       })
     })
-
-    console.log(bundle_data)
-
-    /* 
+ 
     fetch('/cart/add.js', {
       method: 'POST', 
       headers: {
@@ -595,7 +593,6 @@
     .catch((error) => {
       console.error('Error:', error);
     });
-    */
   }
 </script>
 
