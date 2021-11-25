@@ -80,9 +80,8 @@
               {%- assign bundle_component_product = block.settings.bundle_component_product -%}
               {% if bundle_component_product %}
                 <div class="bundle_component_snapshot_div" 
-                  {{ block.shopify_attributes}}
-                  data-product-variant-id="{{ bundle_component_product.first_available_variant.id }}"
-                >
+                    {{ block.shopify_attributes}}
+                    data-product-variant-id="{{ bundle_component_product.first_available_variant.id }}">
                   {{ bundle_component_product.featured_image | img_url: "small" | img_tag }}
                   <p>{{ bundle_component_product.title }}</p>
                 </div>
@@ -545,7 +544,7 @@
 </script>
 
 <script>
-  let bundle_data = {
+  /* let bundle_data = {
     items: [
       {
         quantity: 1,
@@ -562,9 +561,22 @@
         }
       }
     ]
-  }
+  } */
 
   const addBundleToCart = () => {
+    
+    let bundle_data = { items: [ ] }
+    let bundleComponentList = document.querySelectorAll('.bundle_component_snapshot_div')
+    bundleComponentList.forEach( e => {
+      bundle_data.items.push({
+        quantity: 1,
+        id: e.dataset.productVariantId,
+        properties: {
+          bundle: "Yes"
+        }
+      })
+    })
+ 
     fetch('/cart/add.js', {
       method: 'POST', 
       headers: {
