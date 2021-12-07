@@ -68,7 +68,9 @@
       {%- endif -%}
     </div>
     <div class="product__info-wrapper grid__item">
-      <div id="ProductInfo-{{ section.id }}" class="product__info-container{% if section.settings.enable_sticky_info %} product__info-container--sticky{% endif %}">
+      <div id="ProductInfo-{{ section.id }}" 
+           class="product__info-container{% if section.settings.enable_sticky_info %} product__info-container--sticky{% endif %}"
+           data-master-bundle-variant-id="{{ product.first_available_variant.id }}">
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
         {%- for block in section.blocks -%}
